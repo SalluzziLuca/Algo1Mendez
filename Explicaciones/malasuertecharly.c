@@ -45,17 +45,23 @@ int main() {
 		printf("te equivocaste chiquistriquis, era entre %c y %c, probá de vuelta: ", PRIMERA_ALFABETO, ULTIMA_ALFABETO);
 		scanf(" %c", &letra_participante);
 	}
+	// igual que para charly pero con el participante
+
 	printf("Participante, elegi un numero entre %i y %i: ", MINIMO_VALOR_PERMITIDO, MAXIMO_VALOR_PERMITIDO);
 	scanf("%i", &numero_participante);
 	while (numero_participante < MINIMO_VALOR_PERMITIDO || numero_participante > MAXIMO_VALOR_PERMITIDO){
 		printf("te equivocaste chiquistriquis, era entre %i y %i, probá de vuelta: ", MINIMO_VALOR_PERMITIDO, MAXIMO_VALOR_PERMITIDO);
 		scanf(" %i", &numero_participante);
 	}
+// igual que para charly pero con el Participante
 
 	while (!(letra_charly == letra_participante && numero_charly == numero_participante)
+	// si lo que escribe el participante y charly NO (!) es igual, entonces...
 		&& intentos <= INTENTOS_PERMITIDOS){
+			// Y los intentos sean menores o iguales a los permitidos...
 
 		intentos++;
+		// se suma 1 al contador de intentos
 
 		printf("Intento: %i\n", intentos);
 		printf("Participante, elegi una letra entre %c y %c: ", PRIMERA_ALFABETO, ULTIMA_ALFABETO);
@@ -71,13 +77,15 @@ int main() {
 			scanf(" %i", &numero_participante);
 		}
 	}
-
+// mismo que arriba, se repite.
 
 	if (intentos <= INTENTOS_PERMITIDOS) {
 		printf("Charly largá los dolarucos!");
 	} else {
 		printf("Dame ese pesito bb.");
 	}
+	// si llegaste hasta aca y los intentos son menos o igual que los permitios, ganaste
 
 	return 0;
+	// return 0 LMAO
 }
