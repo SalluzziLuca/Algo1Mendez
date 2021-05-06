@@ -4,15 +4,15 @@
 const int NUMERO_MAXIMO = 10;
 const int NUMERO_MINIMO = 1;
 
-void preguntar_numero (int nuumero_recibido){
-    printf("Decime un numero del 1 al 10");
+void preguntar_numero (int numero_recibido){
+    printf("Decime un numero del 1 al 10 \n");
     scanf(" %i", &numero_recibido);
 }
 bool tiene_pubertad( int numero) {
     return (numero <= NUMERO_MINIMO && numero >= NUMERO_MAXIMO);
 }
 int main (){
-  int numero_recibido;
+  int numero_recibido = 0;
   bool pubertad;
   preguntar_numero(numero_recibido);
   pubertad =  tiene_pubertad(numero_recibido);
