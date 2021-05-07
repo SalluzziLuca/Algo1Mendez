@@ -4,7 +4,7 @@
 const int NUMERO_MAXIMO = 10;
 const int NUMERO_MINIMO = 1;
 
-void preguntar_numero (int nuumero_recibido){
+void preguntar_numero (int numero_recibido){
     printf("Decime un numero del 1 al 10");
     scanf(" %i", &numero_recibido);
 }
