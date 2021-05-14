@@ -92,6 +92,7 @@ bool es_grito_valido (int eleccion_grito){
 void encuesta_grito (int* eleccion_grito){
   printf("¡Oh, una rata! ¿Que tan fuerte gritas del %i al %i? Siendo %i no gritar y %i desgarrarse la garganta.\n", GRITO_MINIMO, GRITO_MAXIMO, GRITO_MINIMO, GRITO_MAXIMO);
   scanf(" %i", eleccion_grito);
+
   while (es_grito_valido(*eleccion_grito)) {
     printf("No podes elegir esa opcion, tiene que ser entre %i y %i \n", GRITO_MINIMO, GRITO_MAXIMO);
     scanf(" %i", eleccion_grito);
@@ -154,12 +155,15 @@ void determinacion_del_personaje (int puntaje_total){
   if (puntaje_total >= PUNTAJE_MINIMO_POLAR && puntaje_total <= PUNTAJE_MAXIMO_POLAR) {
   printf("Tu personalidad es de oso - Polar (%c) -.", POLAR);
   }
+
   else if (puntaje_total >= PUNTAJE_MINIMO_PANDA && puntaje_total <= PUNTAJE_MAXIMO_PANDA) {
     printf("Tu personalidad es de oso - Panda (%c) -.",PANDA);
   }
+
   else if (puntaje_total >= PUNTAJE_MINIMO_PARDO && puntaje_total <= PUNTAJE_MAXIMO_PARDO) {
     printf("Tu personalidad es de oso - Pardo (%c) -.", PARDO);
     }
+    
   else{
     printf("me parece que vos y yo vamo a tener un problema\n");
     }
