@@ -140,8 +140,6 @@ int pasaje_de_alimento_a_numero (char eleccion_alimento){
    Post: Va a retorar, despues de hacer el calculo,un int entre 5 y 63 (inclusive) */
 int formula_puntaje_total(int valor_numerico_comida, int valor_numerico_canal, int eleccion_piso , int eleccion_grito){
     return (valor_numerico_comida * valor_numerico_canal) + eleccion_piso + eleccion_grito;
-
-
 }
 
 /* Pre: Que puntaje_total sea un int 5 y 63 (inclusive).
