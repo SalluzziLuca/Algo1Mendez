@@ -92,6 +92,7 @@ bool es_grito_valido (int eleccion_grito){
 void encuesta_grito (int* eleccion_grito){
   printf("¡Oh, una rata! ¿Que tan fuerte gritas del %i al %i? Siendo %i no gritar y %i desgarrarse la garganta.\n", GRITO_MINIMO, GRITO_MAXIMO, GRITO_MINIMO, GRITO_MAXIMO);
   scanf(" %i", eleccion_grito);
+
   while (es_grito_valido(*eleccion_grito)) {
     printf("No podes elegir esa opcion, tiene que ser entre %i y %i \n", GRITO_MINIMO, GRITO_MAXIMO);
     scanf(" %i", eleccion_grito);
@@ -139,13 +140,12 @@ int pasaje_de_alimento_a_numero (char eleccion_alimento){
    Post: Va a retorar, despues de hacer el calculo,un int entre 5 y 63 (inclusive) */
 int formula_puntaje_total(int valor_numerico_comida, int valor_numerico_canal, int eleccion_piso , int eleccion_grito){
 
+<<<<<<< HEAD
 if ((valor_numerico_comida == VALOR_BAMBU || valor_numerico_comida == VALOR_FOCAS || valor_numerico_comida == VALOR_PESCADO) && (valor_numerico_canal == VALOR_CANAL_ANIME || valor_numerico_canal == VALOR_CANAL_LIMPIEZA || valor_numerico_canal == VALOR_CANAL_MUSICA_POP) && (eleccion_piso >= PISO_MINIMO && eleccion_piso <= PISO_MAXIMO) && (eleccion_grito >= GRITO_MINIMO && eleccion_grito <= GRITO_MAXIMO)) {
+=======
+    return (valor_numerico_comida * valor_numerico_canal) + eleccion_piso + eleccion_grito;
+>>>>>>> 5453f05c6e5e4b1856269e46b7ad6e5400e5d9a9
 
-  return (valor_numerico_comida * valor_numerico_canal) + eleccion_piso + eleccion_grito;
-}
-else{
-  return 0;
-}
 }
 
 /* Pre: Que puntaje_total sea un int 5 y 63 (inclusive).
@@ -154,12 +154,15 @@ void determinacion_del_personaje (int puntaje_total){
   if (puntaje_total >= PUNTAJE_MINIMO_POLAR && puntaje_total <= PUNTAJE_MAXIMO_POLAR) {
   printf("Tu personalidad es de oso - Polar (%c) -.", POLAR);
   }
+
   else if (puntaje_total >= PUNTAJE_MINIMO_PANDA && puntaje_total <= PUNTAJE_MAXIMO_PANDA) {
     printf("Tu personalidad es de oso - Panda (%c) -.",PANDA);
   }
+
   else if (puntaje_total >= PUNTAJE_MINIMO_PARDO && puntaje_total <= PUNTAJE_MAXIMO_PARDO) {
     printf("Tu personalidad es de oso - Pardo (%c) -.", PARDO);
     }
+
   else{
     printf("me parece que vos y yo vamo a tener un problema\n");
     }
