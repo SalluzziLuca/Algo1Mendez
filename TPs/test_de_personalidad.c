@@ -14,6 +14,18 @@ const int PISO_MINIMO = 1;
 const int PISO_MAXIMO = 18;
 const int GRITO_MINIMO = 1;
 const int GRITO_MAXIMO = 18;
+const int VALOR_CANAL_LIMPIEZA = 1;
+const int VALOR_CANAL_ANIME = 2;
+const int VALOR_CANAL_MUSICA_POP = 3;
+const int VALOR_FOCAS = 3;
+const int VALOR_BAMBU = 6;
+const int VALOR_PESCADO = 9;
+const int PUNTAJE_MINIMO_POLAR = 5;
+const int PUNTAJE_MAXIMO_POLAR = 24;
+const int PUNTAJE_MINIMO_PANDA = 25;
+const int PUNTAJE_MAXIMO_PANDA = 43;
+const int PUNTAJE_MINIMO_PARDO = 44;
+const int PUNTAJE_MAXIMO_PARDO = 63;
 
 /* Pre: -
    Post:Si el char ingresado es diferente a A, M o L, devuelve true */
@@ -90,13 +102,13 @@ void encuesta_grito (int* eleccion_grito){
    Post: Segun el char ingresado, se devuelve el int equivalente */
 int pasaje_de_canal_a_numero (char eleccion_canal){
   if (eleccion_canal == LIMPIEZA){
-    return 1;
+    return NUMERO_CANAL_LIMPIEZA;
   }
   else if (eleccion_canal == ANIME){
-    return 2;
+    return NUMERO_CANAL_ANIME;
   }
   else if (eleccion_canal == MUSICA_POP){
-    return 3;
+    return NUMERO_CANAL_MUSICA_POP;
   }
   else{
     return 0;
@@ -107,13 +119,13 @@ int pasaje_de_canal_a_numero (char eleccion_canal){
    Post: Segun el char ingresado, se devuelve el int equivalente */
 int pasaje_de_alimento_a_numero (char eleccion_alimento){
   if (eleccion_alimento == FOCAS){
-    return 3;
+    return VALOR_FOCAS;
   }
   else if (eleccion_alimento == BAMBU){
-    return 6;
+    return VALOR_BAMBU;
   }
   else if (eleccion_alimento == PESCADO){
-    return 9;
+    return VALOR_PESCADO;
   }
   else{
     return 0;
@@ -127,19 +139,25 @@ int pasaje_de_alimento_a_numero (char eleccion_alimento){
    Post: Va a retorar, despues de hacer el calculo,un int entre 5 y 63 (inclusive) */
 int formula_puntaje_total(int valor_numerico_comida, int valor_numerico_canal, int eleccion_piso , int eleccion_grito){
 
+if ((valor_numerico_comida == VALOR_BAMBU || valor_numerico_comida == VALOR_FOCAS || valor_numerico_comida == VALOR_PESCADO) && (valor_numerico_canal == VALOR_CANAL_ANIME || valor_numerico_canal == VALOR_CANAL_LIMPIEZA == || valor_numerico_canal == VALOR_CANAL_MUSICA_POP) && (eleccion_piso >= PISO_MINIMO && eleccion_piso <= PISO_MAXIMO) && (eleccion_grito >= GRITO_MINIMO && eleccion_grito <= GRITO_MAXIMO)) {
+
   return (valor_numerico_comida * valor_numerico_canal) + eleccion_piso + eleccion_grito;
+}
+else{
+  return 0;
+}
 }
 
 /* Pre: Que puntaje_total sea un int 5 y 63 (inclusive).
    Post: Segun el rango en el que se encuentre el puntaje_total, imprime por pantalla a que oso equivale (POLAR, PANDA o PARDO) */
 void determinacion_del_personaje (int puntaje_total){
-  if (puntaje_total >= 5 && puntaje_total <= 24) {
+  if (puntaje_total >= PUNTAJE_MINIMO_POLAR && puntaje_total <= PUNTAJE_MAXIMO_POLAR) {
   printf("Tu personalidad es de oso - Polar (%c) -.", POLAR);
   }
-  else if (puntaje_total >= 25 && puntaje_total <= 43) {
+  else if (puntaje_total >= PUNTAJE_MINIMO_PANDA && puntaje_total <= PUNTAJE_MAXIMO_PANDA) {
     printf("Tu personalidad es de oso - Panda (%c) -.",PANDA);
   }
-  else if (puntaje_total >= 44 && puntaje_total <= 63) {
+  else if (puntaje_total >= PUNTAJE_MINIMO_PARDO && puntaje_total <= PUNTAJE_MAXIMO_PARDO) {
     printf("Tu personalidad es de oso - Pardo (%c) -.", PARDO);
     }
   else{
