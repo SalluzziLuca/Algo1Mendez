@@ -139,12 +139,8 @@ int pasaje_de_alimento_a_numero (char eleccion_alimento){
         -Que eleccion_grito esté entre 1 y 18 (inclusive)
    Post: Va a retorar, despues de hacer el calculo,un int entre 5 y 63 (inclusive) */
 int formula_puntaje_total(int valor_numerico_comida, int valor_numerico_canal, int eleccion_piso , int eleccion_grito){
-
-<<<<<<< HEAD
-if ((valor_numerico_comida == VALOR_BAMBU || valor_numerico_comida == VALOR_FOCAS || valor_numerico_comida == VALOR_PESCADO) && (valor_numerico_canal == VALOR_CANAL_ANIME || valor_numerico_canal == VALOR_CANAL_LIMPIEZA || valor_numerico_canal == VALOR_CANAL_MUSICA_POP) && (eleccion_piso >= PISO_MINIMO && eleccion_piso <= PISO_MAXIMO) && (eleccion_grito >= GRITO_MINIMO && eleccion_grito <= GRITO_MAXIMO)) {
-=======
     return (valor_numerico_comida * valor_numerico_canal) + eleccion_piso + eleccion_grito;
->>>>>>> 5453f05c6e5e4b1856269e46b7ad6e5400e5d9a9
+
 
 }
 
