@@ -103,13 +103,13 @@ void encuesta_grito (int* eleccion_grito){
    Post: Segun el char ingresado, se devuelve el int equivalente */
 int pasaje_de_canal_a_numero (char eleccion_canal){
   if (eleccion_canal == LIMPIEZA){
-    return VALOR_CANAL_LIMPIEZA;
+    return NUMERO_CANAL_LIMPIEZA;
   }
   else if (eleccion_canal == ANIME){
-    return VALOR_CANAL_ANIME;
+    return NUMERO_CANAL_ANIME;
   }
   else if (eleccion_canal == MUSICA_POP){
-    return VALOR_CANAL_MUSICA_POP;
+    return NUMERO_CANAL_MUSICA_POP;
   }
   else{
     return 0;
@@ -139,6 +139,7 @@ int pasaje_de_alimento_a_numero (char eleccion_alimento){
         -Que eleccion_grito esté entre 1 y 18 (inclusive)
    Post: Va a retorar, despues de hacer el calculo,un int entre 5 y 63 (inclusive) */
 int formula_puntaje_total(int valor_numerico_comida, int valor_numerico_canal, int eleccion_piso , int eleccion_grito){
+
     return (valor_numerico_comida * valor_numerico_canal) + eleccion_piso + eleccion_grito;
 }
 
