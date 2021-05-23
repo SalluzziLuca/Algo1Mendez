@@ -29,7 +29,7 @@ const int PUNTAJE_MAXIMO_PARDO = 63;
 
 /* Pre: -
    Post:Si el char ingresado es diferente a A, M o L, devuelve true */
-bool es_canal_valido (char eleccion_canal){
+bool es_canal_no_valido (char eleccion_canal){
       return (eleccion_canal != ANIME  && eleccion_canal != MUSICA_POP && eleccion_canal != LIMPIEZA);
 }
 
@@ -39,7 +39,7 @@ void encuesta_canal(char* eleccion_canal){
   printf("Vas a ver televisión un rato, pones el canal de: Anime (%c), Musica Pop (%c), Limpieza (%c).\n", ANIME, MUSICA_POP, LIMPIEZA );
   scanf(" %c", eleccion_canal);
 
-  while (es_canal_valido(*eleccion_canal)){
+  while (es_canal_no_valido(*eleccion_canal)){
 		printf("Letra no valida, ingresar Anime (%c), Musica Pop (%c) o Limpieza (%c).\n", ANIME, MUSICA_POP, LIMPIEZA);
 		scanf(" %c", eleccion_canal);
 	}
@@ -47,7 +47,7 @@ void encuesta_canal(char* eleccion_canal){
 
 /* Pre: -
    Post:Si el char ingresado es diferente a B, P o F, devuelve true */
-bool es_alimento_valido (char eleccion_alimento){
+bool es_alimento_no_valido (char eleccion_alimento){
   return (eleccion_alimento != BAMBU  && eleccion_alimento != PESCADO && eleccion_alimento != FOCAS);
 }
 
@@ -57,7 +57,7 @@ void encuesta_alimento(char* eleccion_alimento){
   printf("Solo podes guardar un alimento en tu vianda: Bambú (%c), Pescado (%c), Focas (%c).\n", BAMBU, PESCADO, FOCAS);
   scanf(" %c", eleccion_alimento);
 
-  while (es_alimento_valido(*eleccion_alimento)) {
+  while (es_alimento_no_valido(*eleccion_alimento)) {
     printf("Letra no valida, ingresar Bambu (%c), Pescado (%c) o Focas (%c).\n", BAMBU, PESCADO, FOCAS);
 		scanf(" %c", eleccion_alimento);
   }
@@ -65,7 +65,7 @@ void encuesta_alimento(char* eleccion_alimento){
 
 /* Pre: -
    Post:Si el int ingresado no está entre PISO_MINIMO(1) y PISO_MAXIMO(18), devuelve true */
-bool es_piso_valido (int eleccion_piso){
+bool es_piso_no_valido (int eleccion_piso){
   return (eleccion_piso < PISO_MINIMO || eleccion_piso > PISO_MAXIMO);
 }
 
@@ -75,7 +75,7 @@ void encuesta_piso(int* eleccion_piso){
     printf("Te compras una torre con tus dos hermanos de 18 pisos. ¿En que piso te gustaría vivir?\n");
     scanf(" %i", eleccion_piso);
 
-    while(es_piso_valido(*eleccion_piso)){
+    while(es_piso_no_valido(*eleccion_piso)){
       printf("Ese piso no existe, elegi entre %i y %i \n", PISO_MAXIMO, PISO_MINIMO);
       scanf(" %i", eleccion_piso);
     }
@@ -100,7 +100,7 @@ void encuesta_grito (int* eleccion_grito){
 }
 
 /* Pre: Que eleccion_canal sea un char de tipo LIMPIEZA(L), ANIME(A), MUSICA_POP(M).
-   Post: Segun el char ingresado, se devuelve el int equivalente */
+   Post: Segun el char ingresado, se devuelve el int equivalente. Este va a ser el multiplicador usado en la cuenta final */
 int pasaje_de_canal_a_numero (char eleccion_canal){
   if (eleccion_canal == LIMPIEZA){
     return NUMERO_CANAL_LIMPIEZA;
@@ -117,7 +117,7 @@ int pasaje_de_canal_a_numero (char eleccion_canal){
 }
 
 /* Pre: Que eleccion_alimento sea un char de tipo FOCAS(F), BAMBU(B), PESCADO(P).
-   Post: Segun el char ingresado, se devuelve el int equivalente */
+   Post: Segun el char ingresado, se devuelve el int equivalente. Este va a ser un multiplicador en la cuenta final (formula_puntaje_total)*/
 int pasaje_de_alimento_a_numero (char eleccion_alimento){
   if (eleccion_alimento == FOCAS){
     return VALOR_FOCAS;
