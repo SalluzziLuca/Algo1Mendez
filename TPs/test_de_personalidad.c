@@ -34,7 +34,9 @@ bool es_canal_no_valido (char eleccion_canal){
 }
 
 /* Pre: -
-   Post: eleccion_canal va a ser ANIME (A), MUSICA_POP(M) o LIMPIEZA(L) */
+   Post:  Pregunta por un canal (char) al usuario.
+   eleccion_canal va a ser ANIME (A), MUSICA_POP(M) o LIMPIEZA(L)
+   Si el usuario no ingresa uno de esos 3 chars, le vuelve a preguntar al usuario*/
 void encuesta_canal(char* eleccion_canal){
   printf("Vas a ver televisión un rato, pones el canal de: Anime (%c), Musica Pop (%c), Limpieza (%c).\n", ANIME, MUSICA_POP, LIMPIEZA );
   scanf(" %c", eleccion_canal);
@@ -52,7 +54,9 @@ bool es_alimento_no_valido (char eleccion_alimento){
 }
 
 /* Pre: -
-   Post: eleccion_alimento va a ser FOCAS (F), BAMBU(B) o PESCADO(P) */
+   Post: Pregunta por un alimento (char) al usuario.
+   eleccion_alimento va a ser FOCAS (F), BAMBU(B) o PESCADO(P)
+   Si el usuario no ingresa uno de esos 3 chars, le vuelve a preguntar al usuario */
 void encuesta_alimento(char* eleccion_alimento){
   printf("Solo podes guardar un alimento en tu vianda: Bambú (%c), Pescado (%c), Focas (%c).\n", BAMBU, PESCADO, FOCAS);
   scanf(" %c", eleccion_alimento);
@@ -70,7 +74,8 @@ bool es_piso_no_valido (int eleccion_piso){
 }
 
 /* Pre: -
-   Post: eleccion_piso va a ser un puntaje (int) entre 1 y 18 (inclusive) */
+   Post: Pregunta por un puntaje de piso al usuario. eleccion_piso va a ser un puntaje (int) entre 1 y 18 (inclusive). Este va a ser sumado en formula_puntaje_total
+   Si el usuario no ingresa uno de esos numeros, le vuelve a preguntar al usuario*/
 void encuesta_piso(int* eleccion_piso){
     printf("Te compras una torre con tus dos hermanos de 18 pisos. ¿En que piso te gustaría vivir?\n");
     scanf(" %i", eleccion_piso);
@@ -88,7 +93,8 @@ bool es_grito_valido (int eleccion_grito){
 }
 
 /* Pre: -
-   Post: eleccion_grito va a ser un puntaje (int) entre 1 y 18 (inclusive) */
+   Post: Pregunta por un puntaje de grito al usuario. eleccion_grito va a ser un puntaje (int) entre 1 y 18 (inclusive). Este va a ser sumado en formula_puntaje_total
+   Si el usuario no ingresa uno de esos numeros, le vuelve a preguntar al usuario*/
 void encuesta_grito (int* eleccion_grito){
   printf("¡Oh, una rata! ¿Que tan fuerte gritas del %i al %i? Siendo %i no gritar y %i desgarrarse la garganta.\n", GRITO_MINIMO, GRITO_MAXIMO, GRITO_MINIMO, GRITO_MAXIMO);
   scanf(" %i", eleccion_grito);
