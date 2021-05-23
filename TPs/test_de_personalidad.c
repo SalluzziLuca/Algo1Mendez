@@ -109,13 +109,13 @@ void encuesta_grito (int* eleccion_grito){
    Post: Segun el char ingresado, se devuelve el int equivalente. Este va a ser el multiplicador usado en la cuenta final */
 int pasaje_de_canal_a_numero (char eleccion_canal){
   if (eleccion_canal == LIMPIEZA){
-    return NUMERO_CANAL_LIMPIEZA;
+    return VALOR_CANAL_LIMPIEZA;
   }
   else if (eleccion_canal == ANIME){
-    return NUMERO_CANAL_ANIME;
+    return VALOR_CANAL_ANIME;
   }
   else if (eleccion_canal == MUSICA_POP){
-    return NUMERO_CANAL_MUSICA_POP;
+    return VALOR_CANAL_MUSICA_POP;
   }
   else{
     return 0;
