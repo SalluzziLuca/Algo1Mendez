@@ -11,7 +11,7 @@ void modificar_valor_array(int un_arreglo[]){
 void mostrar_arreglo(int un_arreglo[]){
   int i;
    for(i=0;i<MAXIMO_VALOR;i++){
-     printf("%s",un_arreglo[i] );
+     printf("%i",un_arreglo[i] );
    }
 }
 
