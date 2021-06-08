@@ -6,9 +6,9 @@ long factorial(int un_numero){
   return un_numero * factorial(un_numero-1);
 }
  int main() {
-   int numero = 0;
-   scanf("%i", numero);
-   numero = factorial(numero);
-   printf("%i", numero);
+  int numero = 0;
+  scanf("%d", numero);
+
+   printf("%li", factorial(numero));
    return 0;
  }
