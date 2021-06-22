@@ -2,6 +2,32 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+static const char ERROR = 'E';
+static const char POLAR = 'I';
+static const char PANDA = 'P';
+static const char PARDO = 'G';
+static const char ANIME = 'A';
+static const char MUSICA_POP = 'M';
+static const char LIMPIEZA = 'L';
+static const char BAMBU = 'B';
+static const char PESCADO = 'P';
+static const char FOCAS = 'F';
+static const int PISO_MINIMO = 1;
+static const int PISO_MAXIMO = 18;
+static const int GRITO_MINIMO = 1;
+static const int GRITO_MAXIMO = 18;
+static const int VALOR_CANAL_LIMPIEZA = 1;
+static const int VALOR_CANAL_ANIME = 2;
+static const int VALOR_CANAL_MUSICA_POP = 3;
+static const int VALOR_FOCAS = 3;
+static const int VALOR_BAMBU = 6;
+static const int VALOR_PESCADO = 9;
+static const int PUNTAJE_MINIMO_POLAR = 5;
+static const int PUNTAJE_MAXIMO_POLAR = 24;
+static const int PUNTAJE_MINIMO_PANDA = 25;
+static const int PUNTAJE_MAXIMO_PANDA = 43;
+static const int PUNTAJE_MINIMO_PARDO = 44;
+static const int PUNTAJE_MAXIMO_PARDO = 63;
 
 
 
@@ -186,5 +212,6 @@ void test_de_personalidad(char* personalidad_detectada){
 
   else{
     printf("me parece que vos y yo vamo a tener un problema\n");
+    *personalidad_detectada = ERROR;
     }
 }

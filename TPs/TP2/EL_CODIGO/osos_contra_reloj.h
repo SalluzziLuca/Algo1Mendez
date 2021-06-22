@@ -2,21 +2,21 @@
 #define __OSOS_CONTRA_RELOJ_H__
 
 #include <stdlib.h>
-#include <stdio.h> 
+#include <stdio.h>
 #include <stdbool.h>
 
 #define MAX_OBSTACULOS 600
 #define MAX_HERRAMIENTAS 600
 
 
-typedef struct coordenada { 
+typedef struct coordenada {
 	int fil;
-	int col; 
+	int col;
 } coordenada_t;
 
-typedef struct elemento_del_mapa { 
+typedef struct elemento_del_mapa {
 	char tipo;
-	coordenada_t posicion; 
+	coordenada_t posicion;
 	bool visible;
 } elemento_del_mapa_t;
 
@@ -27,7 +27,7 @@ typedef struct elemento_mochila {
 
 typedef struct personaje {
 	char tipo;
-	coordenada_t posicion; 
+	coordenada_t posicion;
 	elemento_mochila_t mochila[MAX_HERRAMIENTAS];
 	int cantidad_elementos;
 	int elemento_en_uso; // -1 si no hay nada en uso, o posicion del vector de lo que esta en uso.
@@ -48,37 +48,37 @@ typedef struct juego {
 
 /*
  * Inicializará el juego, cargando toda la información inicial
- * y los datos del personaje. 
+ * y los datos del personaje.
  */
 void inicializar_juego(juego_t* juego, char tipo_personaje);
 
 /*
  * Recibe un juego con todas sus estructuras válidas.
  *
- * El juego se dará por terminado, si el personaje encontró a Chloe. 
+ * El juego se dará por terminado, si el personaje encontró a Chloe.
  * Devolverá:
- * -> 0 si el estado es jugando. 
+ * -> 0 si el estado es jugando.
  * -> -1 si el estado es terminado.
  */
 
 int estado_juego(juego_t juego);
 
 /*
- * Mueve el personaje en la dirección indicada por el usuario o habilita 
- * cualquiera de las herramientas y actualiza el juego según los elementos 
+ * Mueve el personaje en la dirección indicada por el usuario o habilita
+ * cualquiera de las herramientas y actualiza el juego según los elementos
  * que haya en el camino del personaje.
- * El juego quedará en un estado válido al terminar el movimiento. 
+ * El juego quedará en un estado válido al terminar el movimiento.
  * El movimiento será:
- * -> W: Si el personaje debe moverse para la arriba. 
+ * -> W: Si el personaje debe moverse para la arriba.
  * -> A: Si el personaje debe moverse para la izquierda.
  * -> S: Si el personaje debe moverse para la abajo.
  * -> D: Si el personaje debe moverse para la derecha.
  * -> L: Si el personaje quiere encender una linterna.
- * -> V: Si el personaje quiere encender una vela. 
+ * -> V: Si el personaje quiere encender una vela.
  * -> E: Si el personaje quiere encender la bengala.
  * -> T: Si el personaje quiere ver el tiempo restante.
- * En caso de que querer activar una herramienta, y no tenga mas movimientos, no deberá 
- * activarse ninguna ventaja. 
+ * En caso de que querer activar una herramienta, y no tenga mas movimientos, no deberá
+ * activarse ninguna ventaja.
  * Si se aprieta una tecla de iluminación y esta ya está siendo usada, se desactivará colocando
  * el int elemento_en_uso en -1.
  */
