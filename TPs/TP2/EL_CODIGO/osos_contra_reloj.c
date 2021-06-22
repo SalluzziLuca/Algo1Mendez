@@ -15,14 +15,6 @@ static const char PIEDRA = 'R';
 static const char KOALA = 'K';
 
 
-void inicializar_matriz(char terreno[ALTO][ANCHO]){
-  for(int i = 0; i < ALTO; i++){
-    for(int j = 0; j < ANCHO; j++){
-      terreno[i][j] = '.';
-    }
-  }
-}
-
 /* pre: recibe el struct juego_t* juego sin modificaciones
   post: carga 350 (MAX_ARBOLES) arboles, invisibles y en coordenadas aleatorias dentro de la matriz
   */
@@ -78,18 +70,15 @@ void inicializar_juego(juego_t* juego, char tipo_personaje){
 void mostrar_obstaculos(juego_t juego, char terreno[ALTO][ANCHO]){
   for(int i = 0; i  < MAX_OBSTACULOS; i++){
       if(/*juego.obstaculos[i].tipo == ARBOL*/ true){
-        terreno[juego.obstaculos[i].posicion.fil][juego.obstaculos[i].posicion.col] = ARBOL;
+        int fila = juego.obstaculos[i].posicion.fil;
+        int columna = juego.obstaculos[i].posicion.col;
+        terreno[fila][columna] = ARBOL;
       }
     }
 
   }
 
 void mostrar_terreno(char terreno[ALTO][ANCHO]){
-    for(int i = 0; i < ALTO; i++){
-      for(int j = 0; j < ANCHO; j++){
-        terreno[i][j] = '.';
-      }
-    }
   for(int i = 0; i < ALTO; i++){
     for(int j = 0; j < ANCHO; j++){
       printf("%c", terreno[i][j]);
