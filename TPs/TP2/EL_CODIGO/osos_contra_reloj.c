@@ -75,10 +75,10 @@ void inicializar_juego(juego_t* juego, char tipo_personaje){
   prueba_osos(tipo_personaje);
 }
 
-void mostrar_objetos(juego_t juego, char terreno[ALTO][ANCHO]){
-  for(juego.cantidad_obstaculos = 0; juego.cantidad_obstaculos  < MAX_OBSTACULOS; juego.cantidad_obstaculos++){
-      if(/*juego.obstaculos[juego.cantidad_obstaculos].tipo == ARBOL*/ true){
-        terreno[juego.obstaculos[juego.cantidad_obstaculos].posicion.fil][juego.obstaculos[juego.cantidad_obstaculos].posicion.col] = ARBOL;
+void mostrar_obstaculos(juego_t juego, char terreno[ALTO][ANCHO]){
+  for(int i = 0; i  < MAX_OBSTACULOS; i++){
+      if(/*juego.obstaculos[i].tipo == ARBOL*/ true){
+        terreno[juego.obstaculos[i].posicion.fil][juego.obstaculos[i].posicion.col] = ARBOL;
       }
     }
 
@@ -101,5 +101,5 @@ void mostrar_terreno(char terreno[ALTO][ANCHO]){
 void mostrar_juego(juego_t juego){
   char terreno[ALTO][ANCHO];
   mostrar_terreno(terreno);
-  mostrar_objetos(juego, terreno);
+  mostrar_obstaculos(juego, terreno);
 }
