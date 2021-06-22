@@ -76,13 +76,16 @@ void inicializar_juego(juego_t* juego, char tipo_personaje){
 }
 
 void mostrar_obstaculos(juego_t juego, char terreno[ALTO][ANCHO]){
-  for(int i = 0; i  < MAX_OBSTACULOS; i++){
+  for(int i = 0; i < ALTO; i++){
+    for(int j = 0; j < ANCHO; j++){
       if(/*juego.obstaculos[i].tipo == ARBOL*/ true){
-        terreno[juego.obstaculos[i].posicion.fil][juego.obstaculos[i].posicion.col] = ARBOL;
+        printf("%c\n", );
       }
     }
-
   }
+}
+
+
 
 void mostrar_terreno(char terreno[ALTO][ANCHO]){
     for(int i = 0; i < ALTO; i++){
