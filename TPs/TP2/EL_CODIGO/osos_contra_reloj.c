@@ -67,15 +67,7 @@ void inicializar_juego(juego_t* juego, char tipo_personaje){
   prueba_osos(tipo_personaje);
 }
 
-void mostrar_obstaculos(juego_t juego, char terreno[ALTO][ANCHO]){
-  for(int i = 0; i < ALTO; i++){
-    for(int j = 0; j < ANCHO; j++){
-      if(/*juego.obstaculos[i].tipo == ARBOL*/ true){
-        printf("%c\n", );
-      }
-    }
-  }
-}
+
 
 
 
