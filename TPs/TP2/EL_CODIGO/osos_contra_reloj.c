@@ -13,6 +13,8 @@ static const char PARDO = 'G';
 static const char ARBOL = 'A';
 static const char PIEDRA = 'R';
 static const char KOALA = 'K';
+static const char HORIZONTAL = 'H';
+static const char VERTICAL = 'V';
 
 
 /* pre: recibe el struct juego_t* juego sin modificaciones
@@ -47,7 +49,52 @@ void inicializar_obstaculos(juego_t* juego){
     inicializar_arboles(juego);
     inicializar_piedras(juego);
     inicializar_koalas(juego);
+}
+
+void inicializar_linterna(juego_t* juego){
+  if(/*juego.personaje.elemento_en_uso=linterna*/){
+    int fila_actual = juego.personaje.posicion.fil;
+    int columna_actual = juego.personnaje.posicion.col;
+    if(juego.persona.ultimo_movimiento == HORIZONTAL){
+      // iluminar toda la fila
+      for(int i = fila_actual; i > 20; i++){
+        juego->obstaculo[i]->visible = true;
+      }
+    }
+    if(juego.persona.ultimo_movimiento == VERTICAL){
+      // iluminar toda la columna
+      for(int i = columna_actual; i > 30; i++){
+        juego->obstaculo[i]->visible = true;
+      }
+    }
   }
+}
+
+void inicializar_vela(juego_t* juego){
+  if(/*juego.personaje.elemento_en_uso=vela*/){
+    int fila_actual = juego.personaje.posicion.fil;
+    int columna_actual = juego.personaje.posicion.col;
+    // int esquina_arriba_derecha =
+    // ilumina todas las posiciones adyacentes al personaje. Si el personaje esta en la [2][3] ilumina. 1,2 1,3 1,4  2,2 2,3 2,4  3,2 3,3 3,4
+  }
+}
+
+void inicializar_bengala(juego_t* juego){
+  if(/*juego.personaje.elemento_en_uso=bengala*/){
+    juego->obstaculo->posicion->col= rand() % 20 + 0;
+    int fila_de_spawn = juego->obstaculo.posicion.col;
+
+  }
+}
+
+void inicializar_herramientas(juego_t juego){
+  inicializar_linterna(juego);
+  inicializar_vela(juego);
+  inicializar_bengala(juego);
+}
+void inicializar_mochila(juego_t* juego){
+
+}
 
 
 void prueba_osos(char tipo_personaje){
