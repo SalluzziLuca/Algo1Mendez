@@ -10,8 +10,9 @@ void guerreros_validos(guerrero_t plennelor[MAX_NOMBRE], int tope_plennelor, gue
   for (size_t j = 0; j < count; j++) {
     for (size_t i = 0; i < count; i++) {
       if((strcmp(guerrero.plennelor[j],guerrero.cuernavilla[i]) = 0) && ((guerrero.plennelor[j].orcos_matados + guerrero.cuernavilla[i].orcos_matados) >= 10 || (guerrero.plennelor[j].uruk_matados + guerrero.cuernavilla[i].uruk_matados) >= 2){
-
-      guerrero.plennelor[j]=guerrero.merecedores_quinta[i];
+        int tope_merecedores = 0;
+      guerrero.plennelor[j]=guerrero.merecedores_quinta[tope_merecedores];
+      tope_merecedores++;
       }
     }
   }
