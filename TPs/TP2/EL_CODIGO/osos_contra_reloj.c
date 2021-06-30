@@ -15,6 +15,14 @@ static const char PIEDRA = 'R';
 static const char KOALA = 'K';
 
 
+void inicializar_matriz(char terreno[ALTO][ANCHO]){
+  for(int i = 0; i < ALTO; i++){
+    for(int j = 0; j < ANCHO; j++){
+      terreno[i][j] = '.';
+    }
+  }
+}
+
 /* pre: recibe el struct juego_t* juego sin modificaciones
   post: carga 350 (MAX_ARBOLES) arboles, invisibles y en coordenadas aleatorias dentro de la matriz
   */
@@ -47,6 +55,7 @@ void inicializar_obstaculos(juego_t* juego){
     inicializar_arboles(juego);
     inicializar_piedras(juego);
     inicializar_koalas(juego);
+    void inicializar_matriz(char terreno[ALTO][ANCHO]);
   }
 
 
@@ -62,43 +71,35 @@ void prueba_osos(char tipo_personaje){
     }
   }
 void inicializar_juego(juego_t* juego, char tipo_personaje){
-  inicializar_obstaculos(juego);
+  inicializar_obstaculos( juego);
   prueba_osos(tipo_personaje);
 }
 
-<<<<<<< HEAD
-
-=======
-void mostrar_obstaculos(juego_t juego, char* terreno[ALTO][ANCHO]){
-  for(int i = 0; i < juego.cantidad_obstaculos; i++){
-    if(juego.obstaculos[i].tipo == ARBOL){
-      int fila;
-      fila = juego.obstaculos[i].posicion.fil;
-      int columna;
-      columna  = juego.obstaculos[i].posicion.col;
-      *terreno[fila][columna]= ARBOL;
+void mostrar_objetos(juego_t juego, char terreno[ALTO][ANCHO]){
+  for(juego.cantidad_obstaculos = 0; juego.cantidad_obstaculos  < MAX_OBSTACULOS; juego.cantidad_obstaculos++){
+      if(/*juego.obstaculos[juego.cantidad_obstaculos].tipo == ARBOL*/ true){
+        terreno[juego.obstaculos[juego.cantidad_obstaculos].posicion.fil][juego.obstaculos[juego.cantidad_obstaculos].posicion.col] = ARBOL;
+      }
     }
-    else{
-      int fila;
-      fila = juego.obstaculos[i].posicion.fil;
-      int columna;
-      columna  = juego.obstaculos[i].posicion.col;
-      terreno[fila][columna]= ".";
+
+  }
+
+void mostrar_terreno(char terreno[ALTO][ANCHO]){
+    for(int i = 0; i < ALTO; i++){
+      for(int j = 0; j < ANCHO; j++){
+        terreno[i][j] = '.';
+      }
     }
+  for(int i = 0; i < ALTO; i++){
+    for(int j = 0; j < ANCHO; j++){
+      printf("%c", terreno[i][j]);
+    }
+    printf("\n");
   }
+  printf("\n\n");
 }
->>>>>>> d9a831a7b5293a00c520b88c9601ddce603d8a9d
-
-
-
-void mostrar_terreno(juego_t juego, char* terreno[ALTO][ANCHO]){
-  for(int i = 0; i < juego.cantidad_obstaculos; i++){
-    printf("%c", juego.obstaculos[i].tipo);
-  }
-}
-
 void mostrar_juego(juego_t juego){
-  char* terreno[ALTO][ANCHO];
-  mostrar_terreno(juego, terreno);
-  mostrar_obstaculos(juego, terreno);
+  char terreno[ALTO][ANCHO];
+  mostrar_terreno(terreno);
+  mostrar_objetos(juego, terreno);
 }
