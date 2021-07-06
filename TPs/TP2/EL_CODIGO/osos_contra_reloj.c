@@ -104,8 +104,8 @@ void inicializar_linterna(juego_t* juego){
   juego->personaje.ultimo_movimiento = VERTICAL;
   juego->personaje.mochila[1].tipo = LINTERNA;
   if(juego->personaje.mochila[1].tipo == LINTERNA){
-    int fila_actual = 2;
-    int columna_actual = 3;
+    int fila_actual = juego->personaje.posicion.fil;
+    int columna_actual = juego->personaje.posicion.col;
     if(juego->personaje.ultimo_movimiento == HORIZONTAL){
       // iluminar toda la fila
       int columnas_restantes =  ANCHO - columna_actual;
@@ -138,10 +138,41 @@ void inicializar_linterna(juego_t* juego){
 }
 
 void inicializar_vela(juego_t* juego){
-  if(/*juego.personaje.elemento_en_uso=vela*/){
-    int fila_actual = juego.personaje.posicion.fil;
-    int columna_actual = juego.personaje.posicion.col;
-    // int esquina_arriba_derecha =
+  juego->personaje.mochila[1].tipo = VELA;
+  if(juego->personaje.mochila[1].tipo == VELA){
+    int fila_actual = 2;
+    int columna_actual = 3;
+    for (int k = 0; k < MAX_OBSTACULOS; k++) {
+      if (juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual -1)){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == columna_actual){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == columna_actual){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == columna_actual){
+        juego->obstaculos[k].visible = true;
+      }
+      else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
+        juego->obstaculos[k].visible = true;
+      }
+    }
+
+
     // ilumina todas las posiciones adyacentes al personaje. Si el personaje esta en la [2][3] ilumina. 1,2 1,3 1,4  2,2 2,3 2,4  3,2 3,3 3,4
   }
 }
@@ -155,8 +186,8 @@ void inicializar_vela(juego_t* juego){
 // }
 
 void inicializar_objetos(juego_t* juego){
-  inicializar_linterna(juego);
-  // inicializar_vela(juego);
+  // inicializar_linterna(juego);
+  inicializar_vela(juego);
   // inicializar_bengala(juego);
 }
 
