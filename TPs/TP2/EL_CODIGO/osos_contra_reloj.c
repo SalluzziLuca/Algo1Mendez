@@ -24,6 +24,14 @@ static const char BENGALA = 'E';
 // static const char VERTICAL = 'F';
 
 
+void inicializar_matriz(char terreno[ALTO][ANCHO]){
+  for(int i = 0; i < ALTO; i++){
+    for(int j = 0; j < ANCHO; j++){
+      terreno[i][j] = '.';
+    }
+  }
+}
+
 /* pre: recibe el struct juego_t* juego sin modificaciones
   post: inicializa 350 (MAX_ARBOLES) arboles, invisibles y en coordenadas aleatorias dentro de la matriz
   */
@@ -206,9 +214,13 @@ void imprimir_terreno(char terreno[ALTO][ANCHO]){
     }
     printf("\n");
   }
+  printf("\n\n");
 }
+<<<<<<< HEAD
 //pre: que el terreno este cargado adecuadamente con las informacion de los structs
 //post muestra el juego por pantalla (por ahora solo el terreno)
+=======
+>>>>>>> b32d87d069d8c02beb97e5b33d8e5529ae0f0acf
 void mostrar_juego(juego_t juego){
   char terreno[ALTO][ANCHO];
   cargar_terreno(juego, terreno);
