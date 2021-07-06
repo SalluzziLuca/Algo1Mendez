@@ -20,9 +20,9 @@ static const char KOALA = 'K';
 static const char PILA = 'B';
 static const char VELA = 'V';
 static const char BENGALA = 'E';
-// static const char HORIZONTAL = 'H';
-// static const char VERTICAL = 'F';
-
+static const char HORIZONTAL = 'H';
+static const char VERTICAL = 'F';
+static const char LINTERNA = 'L';
 
 void inicializar_matriz(char terreno[ALTO][ANCHO]){
   for(int i = 0; i < ALTO; i++){
@@ -63,7 +63,7 @@ void inicializar_koalas(juego_t* juego){
     }
 
 
-//post: inicializa los 3 ripos de obstaculos con sus coordenadas correspondientes
+//post: inicializa los 3 repos de obstaculos con sus coordenadas correspondientes
 void inicializar_obstaculos(juego_t* juego){
     inicializar_arboles(juego);
     inicializar_piedras(juego);
@@ -99,33 +99,52 @@ inicializar_pilas(juego);
 inicializar_velas(juego);
 inicializar_bengalas(juego);
 }
-// void inicializar_linterna(juego_t* juego){
-//   if(/*juego.personaje.elemento_en_uso=linterna*/){
-//     int fila_actual = juego.personaje.posicion.fil;
-//     int columna_actual = juego.personnaje.posicion.col;
-//     if(juego.persona.ultimo_movimiento == HORIZONTAL){
-//       // iluminar toda la fila
-//       for(int i = fila_actual; i > 20; i++){
-//         juego->obstaculo[i]->visible = true;
-//       }
-//     }
-//     if(juego.persona.ultimo_movimiento == VERTICAL){
-//       // iluminar toda la columna
-//       for(int i = columna_actual; i > 30; i++){
-//         juego->obstaculo[i]->visible = true;
-//       }
-//     }
-//   }
-// }
-//
-// void inicializar_vela(juego_t* juego){
-//   if(/*juego.personaje.elemento_en_uso=vela*/){
-//     int fila_actual = juego.personaje.posicion.fil;
-//     int columna_actual = juego.personaje.posicion.col;
-//     // int esquina_arriba_derecha =
-//     // ilumina todas las posiciones adyacentes al personaje. Si el personaje esta en la [2][3] ilumina. 1,2 1,3 1,4  2,2 2,3 2,4  3,2 3,3 3,4
-//   }
-// }
+
+void inicializar_linterna(juego_t* juego){
+  juego->personaje.ultimo_movimiento = VERTICAL;
+  juego->personaje.mochila[1].tipo = LINTERNA;
+  if(juego->personaje.mochila[1].tipo == LINTERNA){
+    int fila_actual = 2;
+    int columna_actual = 3;
+    if(juego->personaje.ultimo_movimiento == HORIZONTAL){
+      // iluminar toda la fila
+      int columnas_restantes =  ANCHO - columna_actual;
+      for(int i = columna_actual; i < columnas_restantes; i++){
+        for(int k = 0; k < MAX_OBSTACULOS; k++){
+          if(juego->obstaculos[k].posicion.col == i && juego->obstaculos[k].posicion.fil == fila_actual){
+            juego->obstaculos[k].visible = true;
+          }
+          if(juego->herramientas[k].posicion.col == i && juego->herramientas[k].posicion.fil == fila_actual){
+            juego->herramientas[k].visible = true;
+          }
+        }
+      }
+    }
+    else if(juego->personaje.ultimo_movimiento == VERTICAL){
+      // iluminar toda la columna
+      int filas_restantes =  ALTO - fila_actual;
+      for(int i = fila_actual; i < filas_restantes; i++){
+        for(int k = 0; k < MAX_OBSTACULOS; k++){
+          if(juego->obstaculos[k].posicion.fil == i && juego->obstaculos[k].posicion.col == columna_actual){
+            juego->obstaculos[k].visible = true;
+          }
+          if(juego->herramientas[k].posicion.fil == i && juego->herramientas[k].posicion.col == columna_actual){
+            juego->herramientas[k].visible = true;
+          }
+        }
+      }
+    }
+  }
+}
+
+void inicializar_vela(juego_t* juego){
+  if(/*juego.personaje.elemento_en_uso=vela*/){
+    int fila_actual = juego.personaje.posicion.fil;
+    int columna_actual = juego.personaje.posicion.col;
+    // int esquina_arriba_derecha =
+    // ilumina todas las posiciones adyacentes al personaje. Si el personaje esta en la [2][3] ilumina. 1,2 1,3 1,4  2,2 2,3 2,4  3,2 3,3 3,4
+  }
+}
 //
 // void inicializar_bengala(juego_t* juego){
 //   if(/*juego.personaje.elemento_en_uso=bengala*/){
@@ -134,19 +153,19 @@ inicializar_bengalas(juego);
 //
 //   }
 // }
-//
-// void inicializar_objetos(juego_t* juego){
-//   inicializar_linterna(juego);
-//   inicializar_vela(juego);
-//   inicializar_bengala(juego);
-// }
-//
-// void inicializar_mochila(juego_t* juego){
-//   inicializar_objetos(juego);
-//
-// }
-//
-//
+
+void inicializar_objetos(juego_t* juego){
+  inicializar_linterna(juego);
+  // inicializar_vela(juego);
+  // inicializar_bengala(juego);
+}
+
+void inicializar_mochila(juego_t* juego){
+  inicializar_objetos(juego);
+
+}
+
+
 // void prueba_osos(char tipo_personaje){
 //     if(tipo_personaje == POLAR){
 //       printf("POLAR\n");
@@ -165,28 +184,10 @@ void inicializar_juego(juego_t* juego, char tipo_personaje){
 
   inicializar_obstaculos(juego);
   inicializar_herramientas(juego);
+  inicializar_mochila(juego);
 
   // prueba_osos(tipo_personaje);
 }
-
-// void mostrar_obstaculos(juego_t juego, char* terreno[ALTO][ANCHO]){
-//   for(int i = 0; i < juego.cantidad_obstaculos; i++){
-//     if(juego.obstaculos[i].tipo == ARBOL){
-//       int fila;
-//       fila = juego.obstaculos[i].posicion.fil;
-//       int columna;
-//       columna  = juego.obstaculos[i].posicion.col;
-//       *terreno[fila][columna]= ARBOL;
-//     }
-//     else{
-//       int fila;
-//       fila = juego.obstaculos[i].posicion.fil;
-//       int columna;
-//       columna  = juego.obstaculos[i].posicion.col;
-//       terreno[fila][columna]= ".";
-//     }
-//   }
-// }
 
 //pre: que las coordenadas de los obstaculos y herramientas esten dentro del alto y del ancho de la matriz terreno.
 //carga a la matriz terreno los diferentes obstaculos y las diferentes herramientas segun su posicion (coordenadas)
@@ -195,11 +196,13 @@ void cargar_terreno(juego_t juego, char terreno[ALTO][ANCHO]){
     for (int j = 0; j < ANCHO; j++) {
       terreno[i][j] = '.';
       for(int k = 0; k < juego.cantidad_obstaculos; k++){
-        if(i ==  juego.obstaculos[k].posicion.fil && j == juego.obstaculos[k].posicion.col){
-          terreno[i][j]= juego.obstaculos[k].tipo;
+        if(i ==  juego.obstaculos[k].posicion.fil && j == juego.obstaculos[k].posicion.col && juego.obstaculos[k].visible == true){
+          terreno[i][j] = juego.obstaculos[k].tipo;
         }
-        else if(i ==  juego.herramientas[k].posicion.fil && j == juego.herramientas[k].posicion.col){
-          terreno[i][j]= juego.herramientas[k].tipo;
+      }
+      for(int k = 0; k < juego.cantidad_herramientas; k++){
+        if(i ==  juego.herramientas[k].posicion.fil && j == juego.herramientas[k].posicion.col && juego.herramientas[k].visible == true){
+          terreno[i][j] = juego.herramientas[k].tipo;
         }
       }
     }
@@ -216,14 +219,13 @@ void imprimir_terreno(char terreno[ALTO][ANCHO]){
   }
   printf("\n\n");
 }
-<<<<<<< HEAD
+
 //pre: que el terreno este cargado adecuadamente con las informacion de los structs
 //post muestra el juego por pantalla (por ahora solo el terreno)
-=======
->>>>>>> b32d87d069d8c02beb97e5b33d8e5529ae0f0acf
+
 void mostrar_juego(juego_t juego){
   char terreno[ALTO][ANCHO];
   cargar_terreno(juego, terreno);
   imprimir_terreno(terreno);
-  // mostrar_obstaculos(juego, terreno);
+
 }
