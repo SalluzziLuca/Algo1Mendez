@@ -4,7 +4,7 @@ int main() {
   FILE * archi;
   FILE * destino;
   archi = fopen("./copy.c", "r");
-  destino = fopen("./copy_bak.c", "w"); //abre el archivo para lectura. Ni no existe lo crea, lo si existe lo sobreescribe.
+  destino = fopen("./copy_bak.c", "w"); //abre el archivo para lectura. Ni no existe lo crea,si lo existe lo sobreescribe.
   if(!archi){
       printf("error de apertura\n");
       return -1;
