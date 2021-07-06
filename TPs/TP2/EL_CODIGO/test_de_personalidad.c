@@ -157,15 +157,15 @@ static const int PUNTAJE_MAXIMO_PARDO = 63;
      Post: Segun el rango en el que se encuentre el puntaje_total, imprime por pantalla a que oso equivale (POLAR, PANDA o PARDO) */
   void determinacion_del_personaje (int puntaje_total){
     if (puntaje_total >= PUNTAJE_MINIMO_POLAR && puntaje_total <= PUNTAJE_MAXIMO_POLAR) {
-    printf("Tu personalidad es de oso - Polar (%c) -.", POLAR);
+    printf("Tu personalidad es de oso - Polar (%c) -.\n", POLAR);
     }
 
     else if (puntaje_total >= PUNTAJE_MINIMO_PANDA && puntaje_total <= PUNTAJE_MAXIMO_PANDA) {
-      printf("Tu personalidad es de oso - Panda (%c) -.",PANDA);
+      printf("Tu personalidad es de oso - Panda (%c) -.\n",PANDA);
     }
 
     else if (puntaje_total >= PUNTAJE_MINIMO_PARDO && puntaje_total <= PUNTAJE_MAXIMO_PARDO) {
-      printf("Tu personalidad es de oso - Pardo (%c) -.", PARDO);
+      printf("Tu personalidad es de oso - Pardo (%c) -.\n", PARDO);
       }
 
     else{
