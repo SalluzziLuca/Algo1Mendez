@@ -140,53 +140,59 @@ void inicializar_linterna(juego_t* juego){
 void inicializar_vela(juego_t* juego){
   juego->personaje.mochila[1].tipo = VELA;
   if(juego->personaje.mochila[1].tipo == VELA){
-    int fila_actual = 2;
-    int columna_actual = 3;
-    for (int k = 0; k < MAX_OBSTACULOS; k++) {
-      if (juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual -1)){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == columna_actual){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == columna_actual){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == columna_actual){
-        juego->obstaculos[k].visible = true;
-      }
-      else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
-        juego->obstaculos[k].visible = true;
+    int fila_actual = 7;
+    int columna_actual = 13;
+    for (int i = fila_actual -1; i < fila_actual +1; i++) {
+      for (int j = columna_actual -1; j < columna_actual +1; j++){
+        for (int k = 0; k < MAX_OBSTACULOS; k++){
+          if(juego->obstaculos[k].posicion.fil == i && juego->obstaculos[k].posicion.col == j){
+              juego->obstaculos[k].visible = true;
+          }
+        }
       }
     }
-
-
-    // ilumina todas las posiciones adyacentes al personaje. Si el personaje esta en la [2][3] ilumina. 1,2 1,3 1,4  2,2 2,3 2,4  3,2 3,3 3,4
+    // for (int k = 0; k < MAX_OBSTACULOS; k++) {
+    //   if (juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual -1)){
+    //
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == columna_actual){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == columna_actual){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == columna_actual){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
+    //     juego->obstaculos[k].visible = true;
+    //   }
+    // }
   }
 }
-//
 // void inicializar_bengala(juego_t* juego){
-//   if(/*juego.personaje.elemento_en_uso=bengala*/){
-//     juego->obstaculo->posicion->col= rand() % 20 + 0;
-//     int fila_de_spawn = juego.obstaculo.posicion.col;
+//   juego->personaje.mochila[1].tipo = BENGALA
+//   if(juego->personaje.mochila[1].tipo == BENGALA){
+//     fila_de_spawn= rand() % 20 + 0;
+//     columa_de_spawn= rand() % 30 + 0;
 //
 //   }
 // }
 
 void inicializar_objetos(juego_t* juego){
-  // inicializar_linterna(juego);
+  inicializar_linterna(juego);
   inicializar_vela(juego);
   // inicializar_bengala(juego);
 }
