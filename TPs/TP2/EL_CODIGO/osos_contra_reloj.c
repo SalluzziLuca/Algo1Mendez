@@ -20,9 +20,10 @@ static const char KOALA = 'K';
 static const char PILA = 'B';
 static const char VELA = 'V';
 static const char BENGALA = 'E';
-static const char HORIZONTAL = 'H';
-static const char VERTICAL = 'F';
-static const char LINTERNA = 'L';
+// static const char HORIZONTAL = 'H';
+// static const char VERTICAL = 'F';
+// static const char LINTERNA = 'L';
+// static const char CHLOE = 'C';
 
 void inicializar_matriz(char terreno[ALTO][ANCHO]){
   for(int i = 0; i < ALTO; i++){
@@ -39,7 +40,13 @@ void inicializar_matriz(char terreno[ALTO][ANCHO]){
   }
   //post: inicializa los arboles con sus coordenadas correspondientes
 void inicializar_arboles(juego_t* juego){
+    int fil = -1;
+    int col = -1;
     for(juego->cantidad_obstaculos = MIN_OBSTACULOS; juego->cantidad_obstaculos < MAX_ARBOLES; juego->cantidad_obstaculos++){
+        while( fil != juego->obstaculos[juego->cantidad_obstaculos].posicion.fil && col !=juego->obstaculos[juego->cantidad_obstaculos].posicion.col){
+          fil = rand() % 20 + 0;
+          col = rand() % 30 + 0;
+        }
     juego->obstaculos[juego->cantidad_obstaculos].tipo = ARBOL;
 
     juego->obstaculos[juego->cantidad_obstaculos].posicion.fil= rand() % 20 + 0;
@@ -100,109 +107,164 @@ inicializar_velas(juego);
 inicializar_bengalas(juego);
 }
 
-void inicializar_linterna(juego_t* juego){
-  juego->personaje.ultimo_movimiento = VERTICAL;
-  juego->personaje.mochila[1].tipo = LINTERNA;
-  if(juego->personaje.mochila[1].tipo == LINTERNA){
-    int fila_actual = juego->personaje.posicion.fil;
-    int columna_actual = juego->personaje.posicion.col;
-    if(juego->personaje.ultimo_movimiento == HORIZONTAL){
-      // iluminar toda la fila
-      int columnas_restantes =  ANCHO - columna_actual;
-      for(int i = columna_actual; i < columnas_restantes; i++){
-        for(int k = 0; k < MAX_OBSTACULOS; k++){
-          if(juego->obstaculos[k].posicion.col == i && juego->obstaculos[k].posicion.fil == fila_actual){
-            juego->obstaculos[k].visible = true;
-          }
-          if(juego->herramientas[k].posicion.col == i && juego->herramientas[k].posicion.fil == fila_actual){
-            juego->herramientas[k].visible = true;
-          }
-        }
-      }
-    }
-    else if(juego->personaje.ultimo_movimiento == VERTICAL){
-      // iluminar toda la columna
-      int filas_restantes =  ALTO - fila_actual;
-      for(int i = fila_actual; i < filas_restantes; i++){
-        for(int k = 0; k < MAX_OBSTACULOS; k++){
-          if(juego->obstaculos[k].posicion.fil == i && juego->obstaculos[k].posicion.col == columna_actual){
-            juego->obstaculos[k].visible = true;
-          }
-          if(juego->herramientas[k].posicion.fil == i && juego->herramientas[k].posicion.col == columna_actual){
-            juego->herramientas[k].visible = true;
-          }
-        }
-      }
-    }
-  }
-}
-
-void inicializar_vela(juego_t* juego){
-  juego->personaje.mochila[1].tipo = VELA;
-  if(juego->personaje.mochila[1].tipo == VELA){
-    int fila_actual = 7;
-    int columna_actual = 13;
-    for (int i = fila_actual -1; i < fila_actual +1; i++) {
-      for (int j = columna_actual -1; j < columna_actual +1; j++){
-        for (int k = 0; k < MAX_OBSTACULOS; k++){
-          if(juego->obstaculos[k].posicion.fil == i && juego->obstaculos[k].posicion.col == j){
-              juego->obstaculos[k].visible = true;
-          }
-        }
-      }
-    }
-    // for (int k = 0; k < MAX_OBSTACULOS; k++) {
-    //   if (juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual -1)){
-    //
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == columna_actual){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual - 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == columna_actual){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == fila_actual && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual - 1)){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == columna_actual){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    //   else if(juego->obstaculos[k].posicion.fil == (fila_actual + 1) && juego->obstaculos[k].posicion.col == (columna_actual + 1)){
-    //     juego->obstaculos[k].visible = true;
-    //   }
-    // }
-  }
-}
-// void inicializar_bengala(juego_t* juego){
-//   juego->personaje.mochila[1].tipo = BENGALA
-//   if(juego->personaje.mochila[1].tipo == BENGALA){
-//     fila_de_spawn= rand() % 20 + 0;
-//     columa_de_spawn= rand() % 30 + 0;
-//
+// void inicializar_linterna(juego_t* juego){
+//   juego->personaje.ultimo_movimiento = VERTICAL;
+//   juego->personaje.mochila[1].tipo = LINTERNA;
+//   if(juego->personaje.mochila[1].tipo == LINTERNA){
+//     int fila_actual = juego->personaje.posicion.fil;
+//     int columna_actual = juego->personaje.posicion.col;
+//     if(juego->personaje.ultimo_movimiento == HORIZONTAL){
+//       // iluminar toda la fila
+//       int columnas_restantes =  ANCHO - columna_actual;
+//       for(int i = columna_actual; i < columnas_restantes; i++){
+//         for(int k = 0; k < MAX_OBSTACULOS; k++){
+//           if(juego->obstaculos[k].posicion.col == i && juego->obstaculos[k].posicion.fil == fila_actual){
+//             juego->obstaculos[k].visible = true;
+//           }
+//           if(juego->herramientas[k].posicion.col == i && juego->herramientas[k].posicion.fil == fila_actual){
+//             juego->herramientas[k].visible = true;
+//           }
+//         }
+//       }
+//     }
+//     else if(juego->personaje.ultimo_movimiento == VERTICAL){
+//       // iluminar toda la columna
+//       int filas_restantes =  ALTO - fila_actual;
+//       for(int i = fila_actual; i < filas_restantes; i++){
+//         for(int k = 0; k < MAX_OBSTACULOS; k++){
+//           if(juego->obstaculos[k].posicion.fil == i && juego->obstaculos[k].posicion.col == columna_actual){
+//             juego->obstaculos[k].visible = true;
+//           }
+//           if(juego->herramientas[k].posicion.fil == i && juego->herramientas[k].posicion.col == columna_actual){
+//             juego->herramientas[k].visible = true;
+//           }
+//         }
+//       }
+//     }
 //   }
 // }
 
+// void inicializar_vela(juego_t* juego){
+//   juego->personaje.mochila[1].tipo = VELA;
+//   if(juego->personaje.mochila[1].tipo == VELA){
+//     int fila_actual = 7;
+//     int columna_actual = 13;
+//     for (int i = fila_actual -1; i < fila_actual +1; i++) {
+//       for (int j = columna_actual -1; j < columna_actual +1; j++){
+//         for (int k = 0; k < MAX_OBSTACULOS; k++){
+//           if(juego->obstaculos[k].posicion.fil == i && juego->obstaculos[k].posicion.col == j){
+//               juego->obstaculos[k].visible = true;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+void inicializar_bengala(juego_t* juego){
+  juego->personaje.mochila[1].tipo = BENGALA;
+  if(juego->personaje.mochila[1].tipo == BENGALA){
+    int fila_de_spawn= 5;
+    int columna_de_spawn= 5;
+    for(int i = (fila_de_spawn - 3); i < (fila_de_spawn - 2); i++){
+      for (int j = (columna_de_spawn); j < (columna_de_spawn); j++) {
+        for (int m = 0; m < MAX_OBSTACULOS; m++){
+          if(juego->obstaculos[m].posicion.fil == i && juego->obstaculos[m].posicion.col == j){
+              juego->obstaculos[m].visible = true;
+          }
+        }
+      }
+    }
+    for (int i = fila_de_spawn -2; i < fila_de_spawn -1; i++) {
+      for (int k = (columna_de_spawn - 1); k < (columna_de_spawn + 1); k++) {
+        for (int m = 0; m < MAX_OBSTACULOS; m++){
+          if(juego->obstaculos[m].posicion.fil == i && juego->obstaculos[m].posicion.col == k){
+              juego->obstaculos[m].visible = true;
+          }
+        }
+      }
+    }
+    for (int i = fila_de_spawn-1; i < fila_de_spawn; i++) {
+      for (int l = (columna_de_spawn - 2); l < (columna_de_spawn + 2); l++) {
+        for (int m = 0; m < MAX_OBSTACULOS; m++){
+          if(juego->obstaculos[m].posicion.fil == i && juego->obstaculos[m].posicion.col == l){
+              juego->obstaculos[m].visible = true;
+          }
+        }
+      }
+    }
+    for (int i = fila_de_spawn; i < fila_de_spawn + 1; i++) {
+      for (int k = (columna_de_spawn - 3); k < (columna_de_spawn + 3); k++) {
+        for (int m = 0; m < MAX_OBSTACULOS; m++){
+          if(juego->obstaculos[m].posicion.fil == i && juego->obstaculos[m].posicion.col == k){
+              juego->obstaculos[m].visible = true;
+          }
+        }
+      }
+    }
+    for (int i = fila_de_spawn + 1; i < fila_de_spawn + 2; i++) {
+      for (int k = (columna_de_spawn - 2); k < (columna_de_spawn + 2); k++) {
+        for (int m = 0; m < MAX_OBSTACULOS; m++){
+          if(juego->obstaculos[m].posicion.fil == i && juego->obstaculos[m].posicion.col == k){
+              juego->obstaculos[m].visible = true;
+          }
+        }
+      }
+    }
+    for (int i = fila_de_spawn + 2; i < fila_de_spawn + 3; i++) {
+      for (int k = (columna_de_spawn - 1); k < (columna_de_spawn +1); k++) {
+        for (int m = 0; m < MAX_OBSTACULOS; m++){
+          if(juego->obstaculos[m].posicion.fil == i && juego->obstaculos[m].posicion.col == k){
+              juego->obstaculos[m].visible = true;
+          }
+        }
+      }
+    }
+    for (int i = fila_de_spawn + 3; i < fila_de_spawn + 4; i++) {
+      for (int k = (columna_de_spawn); k < (columna_de_spawn); k++) {
+        for (int m = 0; m < MAX_OBSTACULOS; m++){
+          if(juego->obstaculos[m].posicion.fil == i && juego->obstaculos[m].posicion.col == k){
+              juego->obstaculos[m].visible = true;
+          }
+        }
+      }
+    }
+  }
+}
+
 void inicializar_objetos(juego_t* juego){
-  inicializar_linterna(juego);
-  inicializar_vela(juego);
-  // inicializar_bengala(juego);
+  // inicializar_linterna(juego);
+  // inicializar_vela(juego);
+  inicializar_bengala(juego);
 }
 
 void inicializar_mochila(juego_t* juego){
   inicializar_objetos(juego);
 
 }
+// void inicialzar_osos(juego_t* juego){
+//   int fila_de_spawn = -1;
+//   int columna_de_spawn = -1;
+//    while (/* condition */) {
+//      /* code */
+//    }
+// }
 
-
+void inicializar_chloe(juego_t* juego){
+  int fila_de_spawn = -1;
+  int columna_de_spawn = -1;
+  for (int k = 0; k < MAX_OBSTACULOS; k++) {
+    while ((fila_de_spawn != juego->obstaculos[k].posicion.fil && columna_de_spawn != juego->obstaculos[k].posicion.col) || (fila_de_spawn != juego->herramientas[k].posicion.fil && columna_de_spawn != juego->herramientas[k].posicion.col)){
+      fila_de_spawn = rand() % 20 + 0;
+      columna_de_spawn = rand() % 30 + 0;
+    }
+  }
+  juego->amiga_chloe.fil = fila_de_spawn;
+  juego->amiga_chloe.col = columna_de_spawn;
+}
+void inicializar_personajes(juego_t* juego){
+  // inicializar_osos(juego);
+  inicializar_chloe(juego);
+}
 // void prueba_osos(char tipo_personaje){
 //     if(tipo_personaje == POLAR){
 //       printf("POLAR\n");
@@ -222,6 +284,7 @@ void inicializar_juego(juego_t* juego, char tipo_personaje){
   inicializar_obstaculos(juego);
   inicializar_herramientas(juego);
   inicializar_mochila(juego);
+  inicializar_personajes(juego);
 
   // prueba_osos(tipo_personaje);
 }
@@ -231,17 +294,26 @@ void inicializar_juego(juego_t* juego, char tipo_personaje){
 void cargar_terreno(juego_t juego, char terreno[ALTO][ANCHO]){
   for(int i = 0; i < ALTO; i++){
     for (int j = 0; j < ANCHO; j++) {
-      terreno[i][j] = '.';
+      terreno[i][j] = ' ';
       for(int k = 0; k < juego.cantidad_obstaculos; k++){
-        if(i ==  juego.obstaculos[k].posicion.fil && j == juego.obstaculos[k].posicion.col && juego.obstaculos[k].visible == true){
-          terreno[i][j] = juego.obstaculos[k].tipo;
+        if(i ==  juego.obstaculos[k].posicion.fil && j == juego.obstaculos[k].posicion.col /*&& juego.obstaculos[k].visible == true*/){
+            terreno[i][j] = juego.obstaculos[k].tipo;
         }
+      // else if(((juego.obstaculos[k].posicion.fil != i  && juego.obstaculos[k].posicion.col != j) || (juego.herramientas[k].posicion.fil != i && juego.herramientas[k].posicion.col != j)) && juego.obstaculos[k].visible == true){
+      // terreno[i][j] = '.';
+      //   }
       }
       for(int k = 0; k < juego.cantidad_herramientas; k++){
-        if(i ==  juego.herramientas[k].posicion.fil && j == juego.herramientas[k].posicion.col && juego.herramientas[k].visible == true){
+        if(i ==  juego.herramientas[k].posicion.fil && j == juego.herramientas[k].posicion.col /*&& juego.herramientas[k].visible == true*/){
           terreno[i][j] = juego.herramientas[k].tipo;
         }
+        // else if(((juego.obstaculos[k].posicion.fil != i  && juego.obstaculos[k].posicion.col != j) || (juego.herramientas[k].posicion.fil != i && juego.herramientas[k].posicion.col != j)) && juego.obstaculos[k].visible == true){
+        // terreno[i][j] = '.';
+        // }
       }
+      /*if(juego.amiga_chloe.fil == i && juego.amiga_chloe.col == j){
+        terreno[i][j] = CHLOE;
+      }*/
     }
   }
 }
@@ -264,5 +336,4 @@ void mostrar_juego(juego_t juego){
   char terreno[ALTO][ANCHO];
   cargar_terreno(juego, terreno);
   imprimir_terreno(terreno);
-
 }
