@@ -1,16 +1,21 @@
 #include <stdio.h>
-int triangulo(int base, int altura){
-    int area = (base * altura) / 2;
-    return area;
+
+void triangulo();
+
+int main()
+{
+    triangulo();
+
+    return 0;
 }
 
-
-int main(){
-  int base = 0;
-  scanf("Introduzca la base %i", &base);
-  int altura = 0;
-  scanf("Introduzca la altura %i", &altura);
-  int area = triangulo(base, altura);
-  printf("%i", area);
-  return 0;
+void triangulo(){
+    int base=0;
+    int altura=0;
+    printf("Introduzca la base:");
+    scanf("%i", &base);
+    printf("Introduzca la altura:");
+    scanf("%i", &altura);
+    int area = (base * altura / 2);
+    printf("El area del triangulo es: %i",area);
 }
