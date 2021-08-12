@@ -102,7 +102,11 @@ void inicializar_piedras(juego_t* juego, int * tope, int * fila_de_spawn_oso){
 void inicializar_koalas(juego_t* juego, int * tope, int * fila_de_spawn_oso){
     int fila = rand() % 20 + 0;
     int columna = rand() % 30 + 0;
+<<<<<<< HEAD
     int i = 0;
+=======
+    int i = 0; 
+>>>>>>> 4d21a9b10cd4f54e407282a6c96c00769b22ca46
     while (i < *tope){
       if ((juego->obstaculos[i].posicion.fil == fila && juego->obstaculos[i].posicion.col == columna) || (*fila_de_spawn_oso == fila && 0 == columna) || (juego->amiga_chloe.fil == fila && juego->amiga_chloe.col == columna)){
         fila = rand() % 20 + 0;
@@ -116,15 +120,20 @@ void inicializar_koalas(juego_t* juego, int * tope, int * fila_de_spawn_oso){
     juego->obstaculos[juego->cantidad_obstaculos].tipo = KOALA;
     juego->obstaculos[juego->cantidad_obstaculos].posicion.fil= rand() % 20 + 0;
     juego->obstaculos[juego->cantidad_obstaculos].posicion.col= rand() % 30 + 0;
+<<<<<<< HEAD
+=======
+    juego->cantidad_obstaculos = MAX_PIEDRAS;
+>>>>>>> 4d21a9b10cd4f54e407282a6c96c00769b22ca46
     juego->cantidad_obstaculos++;
 
     if(juego->personaje.mochila[juego->personaje.elemento_en_uso].tipo == LINTERNA){
       int fila = rand() % 20 + 0;
       int columna = rand() % 30 + 0;
+      int i = 0;
       while (i < *tope){
         if ((juego->obstaculos[i].posicion.fil == fila && juego->obstaculos[i].posicion.col == columna) || (*fila_de_spawn_oso == fila && 0 == columna) || (juego->amiga_chloe.fil == fila && juego->amiga_chloe.col == columna)){
           fila = rand() % 20 + 0;
-          columna = rand() % 30 + 0;
+          columna = rand() % 10 + 0;
           i = 0;
         }
         else{
@@ -134,6 +143,10 @@ void inicializar_koalas(juego_t* juego, int * tope, int * fila_de_spawn_oso){
         juego->obstaculos[juego->cantidad_obstaculos].tipo = KOALA;
         juego->obstaculos[juego->cantidad_obstaculos].posicion.fil= rand() % 20 + 0;
         juego->obstaculos[juego->cantidad_obstaculos].posicion.col= rand() % 30 + 0;
+<<<<<<< HEAD
+=======
+        juego->cantidad_obstaculos = MAX_PIEDRAS;
+>>>>>>> 4d21a9b10cd4f54e407282a6c96c00769b22ca46
         juego->cantidad_obstaculos++;
     }
 
