@@ -105,7 +105,7 @@ void inicializar_koalas(juego_t* juego, int * tope, int * fila_de_spawn_oso){
 <<<<<<< HEAD
     int i = 0;
 =======
-    int i = 0; 
+    int i = 0;
 >>>>>>> 4d21a9b10cd4f54e407282a6c96c00769b22ca46
     while (i < *tope){
       if ((juego->obstaculos[i].posicion.fil == fila && juego->obstaculos[i].posicion.col == columna) || (*fila_de_spawn_oso == fila && 0 == columna) || (juego->amiga_chloe.fil == fila && juego->amiga_chloe.col == columna)){
@@ -143,10 +143,6 @@ void inicializar_koalas(juego_t* juego, int * tope, int * fila_de_spawn_oso){
         juego->obstaculos[juego->cantidad_obstaculos].tipo = KOALA;
         juego->obstaculos[juego->cantidad_obstaculos].posicion.fil= rand() % 20 + 0;
         juego->obstaculos[juego->cantidad_obstaculos].posicion.col= rand() % 30 + 0;
-<<<<<<< HEAD
-=======
-        juego->cantidad_obstaculos = MAX_PIEDRAS;
->>>>>>> 4d21a9b10cd4f54e407282a6c96c00769b22ca46
         juego->cantidad_obstaculos++;
     }
 
